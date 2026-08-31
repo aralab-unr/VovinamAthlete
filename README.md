@@ -74,7 +74,7 @@ python scripts/csv_to_npz.py --input-dir /path/to/csv --output-dir /path/to/moti
 Train on a broad motion dataset first:
 
 ```bash
-python scripts/train.py VD03-Tracking-No-State-Estimation --motion-file /path/to/motions --env.scene.num-envs=4096
+python scripts/train.py VD03-Tracking-No-State-Estimation --motion-file /path/to/motions --env.scene.num-envs=8196
 ```
 
 #### Stage 2: Fine-tune on Vovinam motions
@@ -84,10 +84,10 @@ Once the universal policy is trained, retarget the Vovinam motion-capture data t
 ```bash
 python scripts/train.py VD03-Tracking-Standing \
   --motion-file vovinamathlete_mjlab/assets/motions/vd03/newvovinamnpz \
-  --env.scene.num-envs 16384 \
+  --env.scene.num-envs 8196 \
   --agent.resume True \
-  --agent.load-run 2026-08-30_15-50-55 \
-  --agent.load-checkpoint model_54600.pt
+  --agent.load-run <your-run-name> \
+  --agent.load-checkpoint <your-checkpoint>.pt
 ```
 
 - The first argument selects the task: `VD03-Tracking`, `VD03-Tracking-No-State-Estimation`, or `VD03-Tracking-Standing`.
