@@ -56,6 +56,25 @@ python -c "import vovinamathlete_mjlab.tasks; from mjlab.tasks.registry import l
 
 This should print the registered tasks: `['VD03-Tracking', 'VD03-Tracking-No-State-Estimation', 'VD03-Tracking-Standing']`.
 
+### 5. Training
+
+Train a tracking policy on a set of motion clips:
+
+```bash
+python scripts/train.py VD03-Tracking --motion-file /path/to/motions --env.scene.num-envs=4096
+```
+
+- The first argument selects the task: `VD03-Tracking`, `VD03-Tracking-No-State-Estimation`, or `VD03-Tracking-Standing`.
+- `--motion-file` points to a single `.npz` clip, a directory of `.npz` clips, or a `.yaml` dataset config (see `vovinamathlete_mjlab/utils/motion_dataset.py`). Convert raw motion-capture CSV to `.npz` first with `scripts/csv_to_npz.py`.
+
+Multi-GPU training:
+
+```bash
+python scripts/train.py VD03-Tracking --motion-file /path/to/motions --gpu-ids 0 1 --env.scene.num-envs=4096
+```
+
+Checkpoints and configs are saved under `logs/rsl_rl/<experiment_name>/<date_time>/`.
+
 ## Methodology & Datasets
 
 ### Summary 
