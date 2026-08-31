@@ -58,20 +58,41 @@ This should print the registered tasks: `['VD03-Tracking', 'VD03-Tracking-No-Sta
 
 ### 5. Training
 
-Train a tracking policy on a set of motion clips:
+Training is a two-stage pipeline: pre-train a universal tracking policy on a broad motion dataset, then fine-tune it on the Vovinam motion-capture data.
+
+#### Data preparation
+
+Prepare the retargeted motion as `.pkl` files in GMR format, then convert them to a folder of `.npz` clips:
 
 ```bash
-python scripts/train.py VD03-Tracking --motion-file /path/to/motions --env.scene.num-envs=4096
+python scripts/pkl_to_csv.py --input_dir /path/to/pkl_output --output_dir /path/to/csv
+python scripts/csv_to_npz.py --input-dir /path/to/csv --output-dir /path/to/motions
+```
+
+#### Stage 1: Universal tracking pre-training
+
+Train on a broad motion dataset first:
+
+```bash
+python scripts/train.py VD03-Tracking-No-State-Estimation --motion-file /path/to/motions --env.scene.num-envs=4096
+```
+
+#### Stage 2: Fine-tune on Vovinam motions
+
+Once the universal policy is trained, retarget the Vovinam motion-capture data to your robot the same way, then fine-tune from the universal policy's checkpoint:
+
+```bash
+python scripts/train.py VD03-Tracking-Standing \
+  --motion-file vovinamathlete_mjlab/assets/motions/vd03/newvovinamnpz \
+  --env.scene.num-envs 16384 \
+  --agent.resume True \
+  --agent.load-run 2026-08-30_15-50-55 \
+  --agent.load-checkpoint model_54600.pt
 ```
 
 - The first argument selects the task: `VD03-Tracking`, `VD03-Tracking-No-State-Estimation`, or `VD03-Tracking-Standing`.
-- `--motion-file` points to a single `.npz` clip, a directory of `.npz` clips, or a `.yaml` dataset config (see `vovinamathlete_mjlab/utils/motion_dataset.py`). Convert raw motion-capture CSV to `.npz` first with `scripts/csv_to_npz.py`.
-
-Multi-GPU training:
-
-```bash
-python scripts/train.py VD03-Tracking --motion-file /path/to/motions --gpu-ids 0 1 --env.scene.num-envs=4096
-```
+- `--motion-file` points to a single `.npz` clip, a directory of `.npz` clips, or a `.yaml` dataset config (see `vovinamathlete_mjlab/utils/motion_dataset.py`).
+- `--agent.resume True --agent.load-run <run_dir> --agent.load-checkpoint <checkpoint.pt>` resumes/fine-tunes from a specific checkpoint under `logs/rsl_rl/<experiment_name>/<run_dir>/`.
 
 Checkpoints and configs are saved under `logs/rsl_rl/<experiment_name>/<date_time>/`.
 
