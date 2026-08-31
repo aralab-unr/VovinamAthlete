@@ -184,60 +184,11 @@ Highly dynamic humanoid motion tracking remains challenging because aggressive w
     </td>
     <td align="center">
       <b>Phan The 2</b><br/>
-      <video src="doc/videos/phan_the_1_004_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_1_004_rd03_120hz_final.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 3</b><br/>
-      <video src="doc/videos/phan_the_1_005_rd03_120hz.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_1_005_rd03_120hz.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 4</b><br/>
-      <video src="doc/videos/phan_the_2_003_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_2_003_rd03_120hz_final.mp4">Watch</a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <b>Phan The 5</b><br/>
-      <video src="doc/videos/phan_the_2_004_rd03_120hz.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_2_004_rd03_120hz.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 6</b><br/>
-      <video src="doc/videos/phan_the_3_004_rd03_120hz.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_3_004_rd03_120hz.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 7</b><br/>
-      <video src="doc/videos/phan_the_3_004_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_3_004_rd03_120hz_final.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 8</b><br/>
-      <video src="doc/videos/phan_the_3_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_3_rd03_120hz_final.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 9</b><br/>
       <video src="doc/videos/phan_the_4_004_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_4_004_rd03_120hz_final.mp4">Watch</a>
     </td>
     <td align="center">
-      <b>Phan The 10</b><br/>
-      <video src="doc/videos/phan_the_4_005_rd03_120hz.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_4_005_rd03_120hz.mp4">Watch</a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <b>Phan The 11</b><br/>
-      <video src="doc/videos/phan_the_4_005_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
-      <a href="doc/videos/phan_the_4_005_rd03_120hz_final.mp4">Watch</a>
-    </td>
-    <td align="center">
-      <b>Phan The 12</b><br/>
+      <b>Phan The 3</b><br/>
       <video src="doc/videos/phan_the_4_006_rd03_120hz_final.mp4" width="140" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_4_006_rd03_120hz_final.mp4">Watch</a>
     </td>
