@@ -8,3 +8,4 @@ logs/
 wandb/
 *.onnx
 *.onnx.data
+doc/data/videos/
