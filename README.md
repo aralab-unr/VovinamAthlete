@@ -72,187 +72,187 @@ Highly dynamic humanoid motion tracking remains challenging because aggressive w
 <table>
   <tr>
     <td align="center">
-      <b>Chien Luoc 01 002</b><br/>
+      <b>Chien Luoc 1</b><br/>
       <video src="doc/videos/chien_luoc_01_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/chien_luoc_01_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Chien Luoc 02 002</b><br/>
+      <b>Chien Luoc 2</b><br/>
       <video src="doc/videos/chien_luoc_02_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/chien_luoc_02_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Dam Da Tu Do 002</b><br/>
+      <b>Dam Da Tu Do 1</b><br/>
       <video src="doc/videos/dam_da_tu_do_002_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/dam_da_tu_do_002_rd03_120hz.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Dam Da Tu Do 002</b><br/>
+      <b>Dam Da Tu Do 2</b><br/>
       <video src="doc/videos/dam_da_tu_do_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/dam_da_tu_do_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Dam Len Goi 001</b><br/>
+      <b>Dam Len Goi</b><br/>
       <video src="doc/videos/dam_len_goi_001_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/dam_len_goi_001_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Dam Tay Khong 01 003</b><br/>
+      <b>Dam Tay Khong 1</b><br/>
       <video src="doc/videos/dam_tay_khong_01_003_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/dam_tay_khong_01_003_rd03_120hz_final.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Dam Tay Khong 01</b><br/>
+      <b>Dam Tay Khong 2</b><br/>
       <video src="doc/videos/dam_tay_khong_01_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/dam_tay_khong_01_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Khoiquyen Take 2 001</b><br/>
+      <b>Khoiquyen 1</b><br/>
       <video src="doc/videos/khoiquyen_take_2_001_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/khoiquyen_take_2_001_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Khoiquyen Take 4 003</b><br/>
+      <b>Khoiquyen 2</b><br/>
       <video src="doc/videos/khoiquyen_take_4_003_50_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/khoiquyen_take_4_003_50_rd03_120hz.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Long Ho 01 002</b><br/>
+      <b>Long Ho 1</b><br/>
       <video src="doc/videos/long_ho_01_002_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_01_002_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Long Ho 01 002</b><br/>
+      <b>Long Ho 2</b><br/>
       <video src="doc/videos/long_ho_01_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_01_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Long Ho 01 003</b><br/>
+      <b>Long Ho 3</b><br/>
       <video src="doc/videos/long_ho_01_003_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_01_003_rd03_120hz.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Long Ho 02 002</b><br/>
+      <b>Long Ho 4</b><br/>
       <video src="doc/videos/long_ho_02_002_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_02_002_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Long Ho 02 003</b><br/>
+      <b>Long Ho 5</b><br/>
       <video src="doc/videos/long_ho_02_003_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_02_003_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Long Ho 03 002</b><br/>
+      <b>Long Ho 6</b><br/>
       <video src="doc/videos/long_ho_03_002_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_03_002_rd03_120hz.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Long Ho 03 003</b><br/>
+      <b>Long Ho 7</b><br/>
       <video src="doc/videos/long_ho_03_003_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/long_ho_03_003_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Ngu Mon 01 001</b><br/>
+      <b>Ngu Mon 1</b><br/>
       <video src="doc/videos/ngu_mon_01_001_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/ngu_mon_01_001_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Ngu Mon 02 002</b><br/>
+      <b>Ngu Mon 2</b><br/>
       <video src="doc/videos/ngu_mon_02_002_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/ngu_mon_02_002_rd03_120hz.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Ngu Mon 02 002</b><br/>
+      <b>Ngu Mon 3</b><br/>
       <video src="doc/videos/ngu_mon_02_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/ngu_mon_02_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Nhap Mon Quyen 01 Half 3 002</b><br/>
+      <b>Nhap Mon Quyen</b><br/>
       <video src="doc/videos/nhap_mon_quyen_01_half_3_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/nhap_mon_quyen_01_half_3_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 1 004 New 5</b><br/>
+      <b>Phan The 1</b><br/>
       <video src="doc/videos/phan_the_1_004_new_5_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_1_004_new_5_rd03_120hz_final.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Phan The 1 004</b><br/>
+      <b>Phan The 2</b><br/>
       <video src="doc/videos/phan_the_1_004_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_1_004_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 1 005</b><br/>
+      <b>Phan The 3</b><br/>
       <video src="doc/videos/phan_the_1_005_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_1_005_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 2 003</b><br/>
+      <b>Phan The 4</b><br/>
       <video src="doc/videos/phan_the_2_003_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_2_003_rd03_120hz_final.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Phan The 2 004</b><br/>
+      <b>Phan The 5</b><br/>
       <video src="doc/videos/phan_the_2_004_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_2_004_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 3 004</b><br/>
+      <b>Phan The 6</b><br/>
       <video src="doc/videos/phan_the_3_004_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_3_004_rd03_120hz.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 3 004</b><br/>
+      <b>Phan The 7</b><br/>
       <video src="doc/videos/phan_the_3_004_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_3_004_rd03_120hz_final.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Phan The 3</b><br/>
+      <b>Phan The 8</b><br/>
       <video src="doc/videos/phan_the_3_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_3_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 4 004</b><br/>
+      <b>Phan The 9</b><br/>
       <video src="doc/videos/phan_the_4_004_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_4_004_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 4 005</b><br/>
+      <b>Phan The 10</b><br/>
       <video src="doc/videos/phan_the_4_005_rd03_120hz.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_4_005_rd03_120hz.mp4">Watch full video</a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <b>Phan The 4 005</b><br/>
+      <b>Phan The 11</b><br/>
       <video src="doc/videos/phan_the_4_005_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_4_005_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Phan The 4 006</b><br/>
+      <b>Phan The 12</b><br/>
       <video src="doc/videos/phan_the_4_006_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/phan_the_4_006_rd03_120hz_final.mp4">Watch full video</a>
     </td>
     <td align="center">
-      <b>Thap Tu 02 002</b><br/>
+      <b>Thap Tu</b><br/>
       <video src="doc/videos/thap_tu_02_002_rd03_120hz_final.mp4" width="260" controls muted playsinline></video><br/>
       <a href="doc/videos/thap_tu_02_002_rd03_120hz_final.mp4">Watch full video</a>
     </td>
