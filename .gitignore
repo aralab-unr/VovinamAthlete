@@ -9,3 +9,6 @@ wandb/
 *.onnx
 *.onnx.data
 doc/data/videos/
+
+# Retargeted motion datasets (large, not versioned)
+vovinamathlete_mjlab/assets/motions/*/

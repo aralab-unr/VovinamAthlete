@@ -29,6 +29,17 @@ flags):
       --output-name lie_down.npz \\
       --smooth 11 --auto-ground 0.08 --calibrate-yaw-only --fix-rotation-drift
 
+Converting boneseed-retargeter output (different CSV layout -- header row,
+Frame column, centimetres, Euler-degree root rotation, degree joints; see
+--csv-format soma in MotionLoader):
+
+.. code-block:: bash
+
+    python scripts/csv_to_npz.py --csv-format soma \\
+      --input-dir vovinamathlete_mjlab/assets/motions/boneseedcsv \\
+      --output-dir vovinamathlete_mjlab/assets/motions/vd03/npzdata \\
+      --batch-size 2048 --device cuda:0 --input-fps 120
+
 This script never opens a viewer/window, so it's headless by default — no
 extra flags needed for running on a machine without a display.
 """
@@ -75,6 +86,7 @@ class MotionLoader:
     input_fps: int,
     output_fps: int,
     device: torch.device | str,
+    csv_format: str = "raw",
     line_range: tuple[int, int] | None = None,
     smooth_window: int = 1,
     base_smooth_window: int = 0,
@@ -98,6 +110,9 @@ class MotionLoader:
     self.input_dt = 1.0 / self.input_fps
     self.output_dt = 1.0 / self.output_fps
     self.device = device
+    if csv_format not in ("raw", "soma", "boneseed"):
+      raise ValueError(f"csv_format must be 'raw', 'soma', or 'boneseed', got {csv_format!r}")
+    self.csv_format = csv_format
     self.line_range = line_range
     self.smooth_window = smooth_window
     self.base_smooth_window = base_smooth_window
@@ -127,26 +142,12 @@ class MotionLoader:
     """Loads the motion from the csv file, then applies cleanup options in a
     fixed order (position/rotation offsets -> leveling/calibration ->
     ground/height -> drift report -> joint overrides)."""
-    if self.line_range is None:
-      motion = torch.from_numpy(np.loadtxt(self.motion_file, delimiter=","))
+    if self.csv_format in ("soma", "boneseed"):
+      self._load_boneseed_csv()
     else:
-      motion = torch.from_numpy(
-        np.loadtxt(
-          self.motion_file,
-          delimiter=",",
-          skiprows=self.line_range[0] - 1,
-          max_rows=self.line_range[1] - self.line_range[0] + 1,
-        )
-      )
-    motion = motion.to(torch.float32).to(self.device)
-    self.motion_base_poss_input = motion[:, :3]
-    self.motion_base_rots_input = motion[:, 3:7]
-    self.motion_base_rots_input = self.motion_base_rots_input[
-      :, [3, 0, 1, 2]
-    ]  # convert to wxyz
-    self.motion_dof_poss_input = motion[:, 7:]
+      self._load_raw_csv()
 
-    self.input_frames = motion.shape[0]
+    self.input_frames = self.motion_base_poss_input.shape[0]
     self.duration = (self.input_frames - 1) * self.input_dt
     print(
       f"Motion loaded ({self.motion_file}), duration: {self.duration} sec, "
@@ -164,6 +165,46 @@ class MotionLoader:
     self._apply_base_height_offset()
     self._report_and_fix_rotation_drift()
     self._apply_zero_and_set_joints()
+
+  def _load_raw_csv(self):
+    """--csv-format raw (default): headerless rows of
+    [x, y, z, qx, qy, qz, qw, joint0, joint1, ...] -- position in metres,
+    root rotation as an xyzw quaternion, joints in radians."""
+    if self.line_range is None:
+      motion = torch.from_numpy(np.loadtxt(self.motion_file, delimiter=","))
+    else:
+      motion = torch.from_numpy(
+        np.loadtxt(
+          self.motion_file,
+          delimiter=",",
+          skiprows=self.line_range[0] - 1,
+          max_rows=self.line_range[1] - self.line_range[0] + 1,
+        )
+      )
+    motion = motion.to(torch.float32).to(self.device)
+    self.motion_base_poss_input = motion[:, :3]
+    self.motion_base_rots_input = motion[:, 3:7][:, [3, 0, 1, 2]]  # xyzw -> wxyz
+    self.motion_dof_poss_input = motion[:, 7:]
+
+  def _load_boneseed_csv(self):
+    """--csv-format soma/boneseed: the boneseed-retargeter CSV layout (also
+    produced by soma_retargeter, same columns) -- a header row, then a
+    leading Frame index, [root_translateX/Y/Z, root_rotateX/Y/Z, joint0,
+    joint1, ...]. Position is in CENTIMETRES, root rotation is extrinsic-XYZ
+    Euler DEGREES (not a quaternion), and joints are in DEGREES. Joint
+    columns must already be in the robot's DFS joint order (this project's
+    boneseed CSVs use '<joint_name>_dof' headers matching VD03_DFS_JOINT_NAMES)."""
+    if self.line_range is not None:
+      raise ValueError("--line-range is not supported with --csv-format soma/boneseed.")
+    motion = torch.from_numpy(np.loadtxt(self.motion_file, delimiter=",", skiprows=1))
+    motion = motion.to(torch.float32).to(self.device)
+
+    self.motion_base_poss_input = motion[:, 1:4] * 0.01  # cm -> m
+    euler_rad = torch.deg2rad(motion[:, 4:7])
+    self.motion_base_rots_input = quat_from_euler_xyz(
+      euler_rad[:, 0], euler_rad[:, 1], euler_rad[:, 2]
+    )
+    self.motion_dof_poss_input = torch.deg2rad(motion[:, 7:])
 
   def _euler_deg_to_quat(self, roll_deg: float, pitch_deg: float, yaw_deg: float) -> torch.Tensor:
     """Build a single (1, 4) wxyz quaternion from Euler angles in degrees."""
@@ -526,6 +567,7 @@ def convert_file(
   output_fps: float,
   output_path: str,
   line_range: tuple[int, int] | None,
+  csv_format: str = "raw",
   smooth: int = 1,
   base_smooth_window: int = 0,
   loop_blend_frames: int = 0,
@@ -573,6 +615,7 @@ def convert_file(
     input_fps=input_fps,
     output_fps=output_fps,
     device=sim.device,
+    csv_format=csv_format,
     line_range=line_range,
     smooth_window=smooth,
     base_smooth_window=base_smooth_window,
@@ -671,6 +714,7 @@ def main(
   input_fps: float = 30.0,
   output_fps: float = 50.0,
   device: str = "cuda:0",
+  csv_format: str = "raw",
   line_range: tuple[int, int] | None = None,
   batch_size: int = 2048,
   overwrite: bool = False,
@@ -701,6 +745,12 @@ def main(
     input_fps: Frame rate of the CSV file(s).
     output_fps: Desired output frame rate.
     device: Device to use.
+    csv_format: Layout of the input CSV file(s). 'raw' (default): headerless
+      [x, y, z, qx, qy, qz, qw, joint...] rows, position in metres, root
+      rotation as an xyzw quaternion, joints in radians. 'soma'/'boneseed':
+      the boneseed-retargeter CSV layout -- header row, leading Frame index
+      column, position in centimetres, root rotation as extrinsic-XYZ Euler
+      degrees, joints in degrees. Not compatible with --line-range.
     line_range: Range of lines to process from the CSV file (single-file mode only).
     batch_size: Number of motion frames converted per simulation step. Higher
       utilizes more GPU parallelism at the cost of more device memory.
@@ -780,6 +830,7 @@ def main(
   scene.initialize(sim.mj_model, sim.model, sim.data)
 
   common_kwargs = dict(
+    csv_format=csv_format,
     smooth=smooth,
     base_smooth_window=base_smooth_window,
     loop_blend_frames=loop_blend_frames,

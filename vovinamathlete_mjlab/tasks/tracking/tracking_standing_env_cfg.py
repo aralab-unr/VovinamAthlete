@@ -185,7 +185,7 @@ def make_tracking_standing_env_cfg() -> ManagerBasedRlEnvCfg:
       velocity_range=VELOCITY_RANGE,
       joint_position_range=(-1.25, 1.25),
       gravity_curriculum=True,
-      gravity_curriculum_start_frac=1.0,
+      gravity_curriculum_start_frac=0.5,
       gravity_curriculum_end_frac=1.05,
       gravity_curriculum_step_frac=0.0000005,
       motion_file="",

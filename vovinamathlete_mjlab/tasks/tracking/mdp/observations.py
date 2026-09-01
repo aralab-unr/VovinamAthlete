@@ -102,8 +102,10 @@ def motion_command_lookahead(
   chunks = []
   for k in lookahead_steps:
     future_steps = _lookahead_frame(command, k, clip_end)
-    chunks.append(command.motion.joint_pos[future_steps])
-    chunks.append(command.motion.joint_vel[future_steps] * command.speed_scale.unsqueeze(-1))
+    chunks.append(command.motion.joint_pos[future_steps].float())
+    chunks.append(
+      command.motion.joint_vel[future_steps].float() * command.speed_scale.unsqueeze(-1)
+    )
   return torch.cat(chunks, dim=-1)
 
 
@@ -116,10 +118,12 @@ def motion_anchor_pos_lookahead(
   for k in lookahead_steps:
     future_steps = _lookahead_frame(command, k, clip_end)
     future_pos_w = (
-      command.motion.body_pos_w[future_steps, command.motion_anchor_body_index]
+      command.motion.body_pos_w[future_steps, command.motion_anchor_body_index].float()
       + env.scene.env_origins
     )
-    future_quat_w = command.motion.body_quat_w[future_steps, command.motion_anchor_body_index]
+    future_quat_w = command.motion.body_quat_w[
+      future_steps, command.motion_anchor_body_index
+    ].float()
     pos, _ = subtract_frame_transforms(
       command.robot_anchor_pos_w,
       command.robot_anchor_quat_w,
@@ -139,10 +143,12 @@ def motion_anchor_ori_lookahead(
   for k in lookahead_steps:
     future_steps = _lookahead_frame(command, k, clip_end)
     future_pos_w = (
-      command.motion.body_pos_w[future_steps, command.motion_anchor_body_index]
+      command.motion.body_pos_w[future_steps, command.motion_anchor_body_index].float()
       + env.scene.env_origins
     )
-    future_quat_w = command.motion.body_quat_w[future_steps, command.motion_anchor_body_index]
+    future_quat_w = command.motion.body_quat_w[
+      future_steps, command.motion_anchor_body_index
+    ].float()
     _, ori_q = subtract_frame_transforms(
       command.robot_anchor_pos_w,
       command.robot_anchor_quat_w,

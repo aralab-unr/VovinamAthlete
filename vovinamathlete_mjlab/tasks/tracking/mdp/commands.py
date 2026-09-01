@@ -57,27 +57,40 @@ class MotionLoader:
     jpos_list, jvel_list = [], []
     bpos_list, bquat_list, blv_list, bav_list = [], [], [], []
     clip_lengths = []
+    # Only the tracked-body subset of lin/ang vel is ever read (see
+    # body_lin_vel_w/body_ang_vel_w below), so slice down to it before it
+    # ever becomes a tensor -- the untracked bodies' velocities are never
+    # materialized, on top of storing everything as fp16 to fit the corpus
+    # in memory. Callers cast back to float32 right after gathering the
+    # (tiny, per-env) active batch, so nothing downstream ever sees fp16.
+    body_indexes_np = body_indexes.cpu().numpy()
     for p in npz_paths:
       data = np.load(p)
-      jpos_list.append(torch.tensor(data["joint_pos"], dtype=torch.float32, device=device))
-      jvel_list.append(torch.tensor(data["joint_vel"], dtype=torch.float32, device=device))
-      bpos_list.append(torch.tensor(data["body_pos_w"], dtype=torch.float32, device=device))
-      bquat_list.append(torch.tensor(data["body_quat_w"], dtype=torch.float32, device=device))
-      blv_list.append(torch.tensor(data["body_lin_vel_w"], dtype=torch.float32, device=device))
-      bav_list.append(torch.tensor(data["body_ang_vel_w"], dtype=torch.float32, device=device))
+      jpos_list.append(torch.tensor(data["joint_pos"], dtype=torch.float16, device=device))
+      jvel_list.append(torch.tensor(data["joint_vel"], dtype=torch.float16, device=device))
+      bpos_list.append(torch.tensor(data["body_pos_w"], dtype=torch.float16, device=device))
+      bquat_list.append(torch.tensor(data["body_quat_w"], dtype=torch.float16, device=device))
+      blv_list.append(
+        torch.tensor(
+          data["body_lin_vel_w"][:, body_indexes_np], dtype=torch.float16, device=device
+        )
+      )
+      bav_list.append(
+        torch.tensor(
+          data["body_ang_vel_w"][:, body_indexes_np], dtype=torch.float16, device=device
+        )
+      )
       clip_lengths.append(data["joint_pos"].shape[0])
 
     self.joint_pos = torch.cat(jpos_list, dim=0)
     self.joint_vel = torch.cat(jvel_list, dim=0)
     self._body_pos_w = torch.cat(bpos_list, dim=0)
     self._body_quat_w = torch.cat(bquat_list, dim=0)
-    self._body_lin_vel_w = torch.cat(blv_list, dim=0)
-    self._body_ang_vel_w = torch.cat(bav_list, dim=0)
     self._body_indexes = body_indexes
     self.body_pos_w = self._body_pos_w[:, self._body_indexes]
     self.body_quat_w = self._body_quat_w[:, self._body_indexes]
-    self.body_lin_vel_w = self._body_lin_vel_w[:, self._body_indexes]
-    self.body_ang_vel_w = self._body_ang_vel_w[:, self._body_indexes]
+    self.body_lin_vel_w = torch.cat(blv_list, dim=0)
+    self.body_ang_vel_w = torch.cat(bav_list, dim=0)
     self.time_step_total = self.joint_pos.shape[0]
 
     self.clip_lengths = torch.tensor(clip_lengths, dtype=torch.long, device=device)
@@ -173,52 +186,57 @@ class MotionCommand(CommandTerm):
 
   @property
   def joint_pos(self) -> torch.Tensor:
-    return self.motion.joint_pos[self.time_steps]
+    return self.motion.joint_pos[self.time_steps].float()
 
   @property
   def joint_vel(self) -> torch.Tensor:
-    return self.motion.joint_vel[self.time_steps] * self.speed_scale.unsqueeze(-1)
+    return self.motion.joint_vel[self.time_steps].float() * self.speed_scale.unsqueeze(-1)
 
   @property
   def body_pos_w(self) -> torch.Tensor:
     return (
-      self.motion.body_pos_w[self.time_steps] + self._env.scene.env_origins[:, None, :]
+      self.motion.body_pos_w[self.time_steps].float()
+      + self._env.scene.env_origins[:, None, :]
     )
 
   @property
   def body_quat_w(self) -> torch.Tensor:
-    return self.motion.body_quat_w[self.time_steps]
+    return self.motion.body_quat_w[self.time_steps].float()
 
   @property
   def body_lin_vel_w(self) -> torch.Tensor:
-    return self.motion.body_lin_vel_w[self.time_steps] * self.speed_scale.view(-1, 1, 1)
+    return (
+      self.motion.body_lin_vel_w[self.time_steps].float() * self.speed_scale.view(-1, 1, 1)
+    )
 
   @property
   def body_ang_vel_w(self) -> torch.Tensor:
-    return self.motion.body_ang_vel_w[self.time_steps] * self.speed_scale.view(-1, 1, 1)
+    return (
+      self.motion.body_ang_vel_w[self.time_steps].float() * self.speed_scale.view(-1, 1, 1)
+    )
 
   @property
   def anchor_pos_w(self) -> torch.Tensor:
     return (
-      self.motion.body_pos_w[self.time_steps, self.motion_anchor_body_index]
+      self.motion.body_pos_w[self.time_steps, self.motion_anchor_body_index].float()
       + self._env.scene.env_origins
     )
 
   @property
   def anchor_quat_w(self) -> torch.Tensor:
-    return self.motion.body_quat_w[self.time_steps, self.motion_anchor_body_index]
+    return self.motion.body_quat_w[self.time_steps, self.motion_anchor_body_index].float()
 
   @property
   def anchor_lin_vel_w(self) -> torch.Tensor:
     return (
-      self.motion.body_lin_vel_w[self.time_steps, self.motion_anchor_body_index]
+      self.motion.body_lin_vel_w[self.time_steps, self.motion_anchor_body_index].float()
       * self.speed_scale.unsqueeze(-1)
     )
 
   @property
   def anchor_ang_vel_w(self) -> torch.Tensor:
     return (
-      self.motion.body_ang_vel_w[self.time_steps, self.motion_anchor_body_index]
+      self.motion.body_ang_vel_w[self.time_steps, self.motion_anchor_body_index].float()
       * self.speed_scale.unsqueeze(-1)
     )
 
@@ -499,9 +517,9 @@ class MotionCommand(CommandTerm):
       )
       root_pos[env_ids, 2] = root_pos[env_ids, 2] + (_ground_margin - min_actual_z)
     else:
-      recorded_root_pos = self.motion._body_pos_w[self.time_steps[env_ids], 0]
-      recorded_root_quat = self.motion._body_quat_w[self.time_steps[env_ids], 0]
-      all_body_pos = self.motion._body_pos_w[self.time_steps[env_ids]]
+      recorded_root_pos = self.motion._body_pos_w[self.time_steps[env_ids], 0].float()
+      recorded_root_quat = self.motion._body_quat_w[self.time_steps[env_ids], 0].float()
+      all_body_pos = self.motion._body_pos_w[self.time_steps[env_ids]].float()
       rel_offsets = quat_apply_inverse(
         recorded_root_quat[:, None, :].expand(-1, all_body_pos.shape[1], -1),
         all_body_pos - recorded_root_pos[:, None, :],
