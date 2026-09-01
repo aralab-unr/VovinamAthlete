@@ -102,7 +102,7 @@ Checkpoints and configs are saved under `logs/rsl_rl/<experiment_name>/<date_tim
 
 Highly dynamic humanoid motion tracking remains challenging because aggressive whole-body motions can quickly drive the robot far from the reference trajectory and into fallen states. To address this, we present VovinamAthlete, a high-dynamic motion-tracking and fall-recovery framework built on an optical motion-capture dataset collected from trained Vietnamese Vovinam athletes. The framework first pre-trains a universal whole-body tracking policy on BONES-SEED, then fine-tunes it on Vovinam motions with randomized failure states and a progressive gravity curriculum, enabling a single policy to both track dynamic martial-arts motions and recover from falls without a separate recovery controller or predefined get-up trajectory.
 
-![VovinamAthlete pipeline](doc/data/figures/vovinamathletepipeline.png)
+![VovinamAthlete pipeline](doc/figures/vovinamathletepipeline.png)
 
 ### Datasets
 
