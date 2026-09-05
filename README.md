@@ -242,3 +242,71 @@ Highly dynamic humanoid motion tracking remains challenging because aggressive w
     </td>
   </tr>
 </table>
+
+
+### Experiment Results
+
+Hardware deployment on the custom humanoid robot robot. Each run starts with the robot lying on the floor: the policy stands it up, tracks the Vovinam form, then holds a standing pose. Runs 1-4 start **prone** (face-down) and runs 5-8 start **supine** (on the back), so both fall attitudes are covered. 
+
+<table>
+  <tr>
+    <td align="center">
+      <b>Run 1</b><br/>
+      <sub>prone start</sub><br/>
+      <video src="doc/deploy/20260905_144236.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_144236.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Run 2</b><br/>
+      <sub>prone start</sub><br/>
+      <video src="doc/deploy/20260905_145045.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_145045.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Run 3</b><br/>
+      <sub>prone start</sub><br/>
+      <video src="doc/deploy/20260905_145925.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_145925.mp4">Watch</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Run 4</b><br/>
+      <sub>prone start</sub><br/>
+      <video src="doc/deploy/20260905_150949.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_150949.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Run 5</b><br/>
+      <sub>supine start</sub><br/>
+      <video src="doc/deploy/20260905_151827.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_151827.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Run 6</b><br/>
+      <sub>supine start</sub><br/>
+      <video src="doc/deploy/20260905_152818.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_152818.mp4">Watch</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Run 7</b><br/>
+      <sub>supine start</sub><br/>
+      <video src="doc/deploy/20260905_153559.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_153559.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Run 8</b><br/>
+      <sub>supine start</sub><br/>
+      <video src="doc/deploy/20260905_154242.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_154242.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Additional run</b><br/>
+      <sub>prone start</sub><br/>
+      <video src="doc/deploy/20260905_143458.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/20260905_143458.mp4">Watch</a>
+    </td>
+  </tr>
+</table>
