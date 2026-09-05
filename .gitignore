@@ -16,8 +16,5 @@ vovinamathlete_mjlab/assets/motions/*/
 # Deployment rosbags and raw hardware capture — not published
 doc/deploy/bags/
 
-# Raw deployment videos (188-353 MB each, over GitHub's 100 MB file limit)
-doc/deploy/*.mp4
-
 # Figure-generation code for the deployment plots — kept out of the release
 doc/figures/deploy/scripts/
