@@ -109,6 +109,10 @@ Highly dynamic humanoid motion tracking remains challenging because aggressive w
 
 ### Video
 
+<video src="doc/videos/VovinamAthlete_compressed.mp4" width="640" controls playsinline></video>
+
+[Watch the video](doc/videos/VovinamAthlete_compressed.mp4)
+
 ## Results
 ### Simulation Results
 
