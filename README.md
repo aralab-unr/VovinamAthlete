@@ -107,6 +107,19 @@ Highly dynamic humanoid motion tracking remains challenging because aggressive w
 
 ### Datasets
 
+**Table: Statistical comparison of motion dynamics across datasets.**
+
+| Dataset | Body Lin. Speed (m/s) | Body Ang. Speed (m/s) | Frames Range |
+|---|---|---|---|
+| LAFAN1 | 0.790 ± 0.251 | 1.962 ± 0.553 | [3065, 9171] |
+| PHUMA | 0.193 ± 0.130 | 0.585 ± 0.368 | [49, 222] |
+| AMASS | 0.188 ± 0.165 | 0.510 ± 0.309 | [2, 8788] |
+| KungFuAthlete (Ground) | 0.496 ± 0.324 | 1.537 ± 0.959 | [24, 15792] |
+| KungFuAthlete (Jump) | 0.948 ± 0.473 | 2.832 ± 1.431 | [25, 2842] |
+| VovinamAthlete (Ours) | 0.440 ± 0.392 | 2.363 ± 1.956 | [1560, 9148] |
+
+VovinamAthlete's linear body speed is moderate — well above the daily-activity datasets (PHUMA, AMASS) but below LAFAN1 and KungFuAthlete (Jump), both of which involve substantial locomotion across the capture volume. Its angular speed, however, is the second-highest of any dataset here, behind only KungFuAthlete (Jump). Taken together, these give VovinamAthlete the highest ratio of angular to linear speed in the table (≈5.4, versus ≈2.5–3.1 for every other dataset) — consistent with Vovinam techniques being dominated by fast in-place rotation (strikes, kicks, spinning attacks) rather than large translational movement through space. This rotation-heavy, comparatively stationary character is what makes the motions difficult to track and easy to fall out of: a policy has to commit to fast whole-body rotation while keeping its base of support small, which is also what motivates pairing the tracking objective with fall recovery rather than treating them as separate skills.
+
 ### Video
 
 <video src="doc/videos/VovinamAthlete_compressed.mp4" width="640" controls playsinline></video>
