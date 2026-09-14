@@ -334,34 +334,34 @@ Additional push-recovery trials, where an external disturbance is applied to the
   <tr>
     <td align="center">
       <b>Push 1</b><br/>
-      <video src="doc/deploy/1.mp4" width="140" controls muted playsinline></video><br/>
+      <video src="doc/deploy/1.mp4" width="480" controls muted playsinline></video><br/>
       <a href="doc/deploy/1.mp4">Watch</a>
     </td>
     <td align="center">
       <b>Push 2</b><br/>
-      <video src="doc/deploy/2.mp4" width="140" controls muted playsinline></video><br/>
+      <video src="doc/deploy/2.mp4" width="480" controls muted playsinline></video><br/>
       <a href="doc/deploy/2.mp4">Watch</a>
     </td>
     <td align="center">
       <b>Push 3</b><br/>
-      <video src="doc/deploy/3.mp4" width="140" controls muted playsinline></video><br/>
+      <video src="doc/deploy/3.mp4" width="480" controls muted playsinline></video><br/>
       <a href="doc/deploy/3.mp4">Watch</a>
     </td>
   </tr>
   <tr>
     <td align="center">
       <b>Push 4</b><br/>
-      <video src="doc/deploy/4.mp4" width="140" controls muted playsinline></video><br/>
+      <video src="doc/deploy/4.mp4" width="480" controls muted playsinline></video><br/>
       <a href="doc/deploy/4.mp4">Watch</a>
     </td>
     <td align="center">
       <b>Push 5</b><br/>
-      <video src="doc/deploy/5.mp4" width="140" controls muted playsinline></video><br/>
+      <video src="doc/deploy/5.mp4" width="480" controls muted playsinline></video><br/>
       <a href="doc/deploy/5.mp4">Watch</a>
     </td>
     <td align="center">
       <b>Push 7</b><br/>
-      <video src="doc/deploy/7.mp4" width="140" controls muted playsinline></video><br/>
+      <video src="doc/deploy/7.mp4" width="480" controls muted playsinline></video><br/>
       <a href="doc/deploy/7.mp4">Watch</a>
     </td>
   </tr>
