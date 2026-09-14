@@ -327,3 +327,25 @@ Hardware deployment on the custom humanoid robot robot. Each run starts with the
     </td>
   </tr>
 </table>
+
+Additional push-recovery trials, where an external disturbance is applied to the standing robot mid-sequence rather than starting it from the floor:
+
+<table>
+  <tr>
+    <td align="center">
+      <b>Push 1</b><br/>
+      <video src="doc/deploy/1.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/1.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Push 2</b><br/>
+      <video src="doc/deploy/2.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/2.mp4">Watch</a>
+    </td>
+    <td align="center">
+      <b>Push 3</b><br/>
+      <video src="doc/deploy/3.mp4" width="140" controls muted playsinline></video><br/>
+      <a href="doc/deploy/3.mp4">Watch</a>
+    </td>
+  </tr>
+</table>
